@@ -1,3 +1,7 @@
+---
+cover: /img/mysql.jpeg
+---
+
 #### mac os Mysql 安装
 
 ### 1. 首先已安装 homebrew
@@ -167,6 +171,7 @@ mysql -uroot -p
 这里用第二种方式 ，解决方法如下
 
 1. 登入 Mysql
+
 ```
 mysql -u root -p
 password: //登入
@@ -174,7 +179,8 @@ password: //登入
 use mysql;    //切换到mysql数据库
 select user,host,plugin,authentication_string from user; //查询user表。我们来看一下信息
 ```
-执行后我们可以看到。user表中root用户的加密规则为caching_sha2_password
+
+执行后我们可以看到。user 表中 root 用户的加密规则为 caching_sha2_password
 
 2. 修改账户密码加密规则并更新用户密码
 
@@ -183,7 +189,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;   
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';   #更新一下用户的密码
 ```
-3. 刷新权限并重置密码
-FLUSH PRIVILEGES;   #刷新权限 
 
-4. 再次打开Navicat Premium 12连接MySQL问题数据库就会发现可以连接成功了
+3. 刷新权限并重置密码
+   FLUSH PRIVILEGES; #刷新权限
+
+4. 再次打开 Navicat Premium 12 连接 MySQL 问题数据库就会发现可以连接成功了

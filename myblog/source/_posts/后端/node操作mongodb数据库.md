@@ -1,3 +1,7 @@
+---
+cover: /img/node.jpeg
+---
+
 ## mongodb 模块 直接粘代码
 
 ```

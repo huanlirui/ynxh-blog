@@ -1,3 +1,6 @@
+---
+cover: /img/node.jpeg
+---
 ##mongodb 数据库学习笔记
 
 1. mac 下用 brew 安装。网上例子很多，照着走即可。

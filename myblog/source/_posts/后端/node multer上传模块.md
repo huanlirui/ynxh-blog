@@ -1,4 +1,8 @@
-node multer 模块
+---
+cover: /img/node.jpeg
+---
+
+node multer 模块 用来上传文件。已实践+运用，后续回来贴代码
 
 配置上传目录
 mkdirp 模块

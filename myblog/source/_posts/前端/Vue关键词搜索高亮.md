@@ -1,5 +1,8 @@
-转自：https://wintc.top/   正好有此需求。借鉴博主的实现思路进行实操。以下为原文
+---
+cover: /img/vue.jpg
+---
 
+转自：https://wintc.top/ 正好有此需求。借鉴博主的实现思路进行实操。以下为原文
 
 有时候给页面内容添加一个关键词搜索功能，如果搜索结果能够像浏览器搜索一样高亮显示，那找起来就会很明显体验会好很多。本文就介绍一下关键词搜索高亮的实现方案。
 
@@ -11,17 +14,17 @@
 
 一、实现原理
 实现原理很简单：
-使用正则匹配出文本内容中的所有关键词，在关键词外包一层内联标签，比如span或者font，通过innerHtml渲染文本。使用CSS控制插入的内联元素样式，并且记录下当前搜索到的结果是第几个，使用不同的样式来展示。
+使用正则匹配出文本内容中的所有关键词，在关键词外包一层内联标签，比如 span 或者 font，通过 innerHtml 渲染文本。使用 CSS 控制插入的内联元素样式，并且记录下当前搜索到的结果是第几个，使用不同的样式来展示。
 
 比如文本内容是“江畔何人初见月？江月何年初照人？”，而关键词是“月”，那替换后的字符串可能变为：
 
 江畔何人初见<font style="background: #ff9632">月</font>？江<font style="background: #ffff00">月</font>何年初照人？
-其中匹配的“月”被替换成了<font>月</font>，并且设置font标签的背景色，使得搜索到的第一个“月”（当前关键词）背景变为橘黄色，而第二个“月”背景变为黄色。
+其中匹配的“月”被替换成了<font>月</font>，并且设置 font 标签的背景色，使得搜索到的第一个“月”（当前关键词）背景变为橘黄色，而第二个“月”背景变为黄色。
 
-本文基于Vue实现了一个组件，并且将组件发布到了npm上，如果你不想自己写组件，可以直接安装使用：vue-search-highlight。接下来会介绍一下组件vue-search-highlight的使用，然后给出Vue中的搜索高亮的代码实现。
+本文基于 Vue 实现了一个组件，并且将组件发布到了 npm 上，如果你不想自己写组件，可以直接安装使用：vue-search-highlight。接下来会介绍一下组件 vue-search-highlight 的使用，然后给出 Vue 中的搜索高亮的代码实现。
 
-二、vue-search-highlight组件使用
-组件需要传入文本content以及关键词keyword，组件会渲染出一个包含content并且关键词被font元素替换的div元素。
+二、vue-search-highlight 组件使用
+组件需要传入文本 content 以及关键词 keyword，组件会渲染出一个包含 content 并且关键词被 font 元素替换的 div 元素。
 组件功能如下：
 
 关键词高亮
@@ -29,46 +32,46 @@
 查找上一个、下一个功能，调用相应函数即可跳到上一个或者下一个
 使用方法：
 
-安装组件，使用npm或者yarn
-// 如果使用yarn
+安装组件，使用 npm 或者 yarn
+// 如果使用 yarn
 yarn add vue-search-highlight
-// 如果使用npm
+// 如果使用 npm
 npm install vue-search-highlight​
 引入
-vue-search-highlight本身是一个组件，在需要搜索高亮的页面里引入后，像正常的组件一样使用即可。
+vue-search-highlight 本身是一个组件，在需要搜索高亮的页面里引入后，像正常的组件一样使用即可。
 import SearchHighlight from 'vue-search-highlight'
 
 // 注册为子组件
 components: {
-  'search-highlight': SearchHighlight
+'search-highlight': SearchHighlight
 },​
 props
-props	说明	备注
-content	需要展示的文本，搜索即在这个文本中进行。	
-keyword	关键词	
-highlightStyle	关键词高亮的CSS样式	非必传，参照浏览器搜索，默认设置背景为黄色#ffff00
-currentStyle	当前关键词高亮的CSS样式	非必传，参照浏览器搜索，默认设置背景为橘黄色#ff9632 
+props 说明 备注
+content 需要展示的文本，搜索即在这个文本中进行。
+keyword 关键词
+highlightStyle 关键词高亮的 CSS 样式 非必传，参照浏览器搜索，默认设置背景为黄色#ffff00
+currentStyle 当前关键词高亮的 CSS 样式 非必传，参照浏览器搜索，默认设置背景为橘黄色#ff9632
 events
-组件有两个重要的数据，即搜索匹配数量和当前关键词索引，会通过$emit弹射出来，如果需要展示搜索索引和匹配总数（比如 3 / 16），你可以监听组件的这两个事件：
-事件名	返回值
-＠current-change	返回值：当前关键词索引。
-关键词改变的时候，如果搜索到内容，会返回1，搜索不到则返回0。
-＠mactch-count-change	返回值：文本匹配关键词总数。
+组件有两个重要的数据，即搜索匹配数量和当前关键词索引，会通过$emit 弹射出来，如果需要展示搜索索引和匹配总数（比如 3 / 16），你可以监听组件的这两个事件：
+事件名 返回值
+＠current-change 返回值：当前关键词索引。
+关键词改变的时候，如果搜索到内容，会返回 1，搜索不到则返回 0。
+＠mactch-count-change 返回值：文本匹配关键词总数。
 methods
-你可以通过ref引用组件，直接调用组件内部的一些方法：
-方法名	参数	说明
-searchNext	无	下一个关键词滚动到可视区域
-searchLast	无	上一个关键词滚动到可视区域
-scrollTo	index	滚动到第index（从1开始）个关键词　
+你可以通过 ref 引用组件，直接调用组件内部的一些方法：
+方法名 参数 说明
+searchNext 无 下一个关键词滚动到可视区域
+searchLast 无 上一个关键词滚动到可视区域
+scrollTo index 滚动到第 index（从 1 开始）个关键词　
 使用示例：
 
 <search-highlight
-  class="search-highlight"
-  ref="search"
-  @current-change="currentChange"
-  @mactch-count-change="matchCountChange"
-  :content="content"
-  :keyword="keyword">
+class="search-highlight"
+ref="search"
+@current-change="currentChange"
+@mactch-count-change="matchCountChange"
+:content="content"
+:keyword="keyword">
 </search-highlight>
 
 <script>
@@ -129,8 +132,9 @@ export default {
   }
 }
 </script>
+
 三、组件代码实现
-vue-search-highlight组件代码如下：
+vue-search-highlight 组件代码如下：
 
 <template>
   <div class="search-highlight" v-html="contentShow">

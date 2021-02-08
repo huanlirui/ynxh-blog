@@ -1,3 +1,7 @@
+---
+cover: /img/mysql.jpeg
+---
+
 错误信息：
 1055 - Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column ‘fbjs.mscc.ContactTime’ which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by, Time: 0.000000s
 

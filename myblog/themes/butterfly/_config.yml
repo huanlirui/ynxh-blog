@@ -146,10 +146,13 @@ cover:
   # 當沒有設置cover時，默認的封面顯示
   default_cover:
     - /img/fengmian.jpeg
-    - /img/html.jpeg
-    - /img/react.jpeg
+    - /img/egg.svg
+    - /img/react.jpg
     - /img/vue.jpg
-    - /img/css.jpg
+    - /img/nest.png
+    - /img/mysql.jpeg
+    - /img/flutter.jpeg
+    - /img/javascript.jpg
   
 
 # if the photo link cannot connect,it will show that

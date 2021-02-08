@@ -1,11 +1,13 @@
 ---
 toc:
 enable: true
+cover: /img/javascript.jpg
 ---
 
 # dva 再回顾
 
 ### 前言
+
 最近看了大神的前端代码，发现自己写得东西太混乱了，ui 组件中夹杂着数据处理，业务逻辑。代码可读性较差，且代码臃肿。看到大神用的 dva！果断跟！
 
 学 react 时为了状态管理，看了 redux，只有一个感受：麻烦！！ 后来了解到 dva，只用 connect 一下，就能轻松把 model 和组件关联起来，公用状态。然而，当时的我仅仅领悟到了它的使用方法，未曾想过什么时候该用，也未曾深入了解 dva 仅有的几个 api 的作用和设计思想(主要是我看不懂 hhhh)。 这次，重新认识 dva!
@@ -95,14 +97,15 @@ function* addAfter1Second(action, { put, call }) {
 }
 ```
 
-   > Effect 是一个 Generator 函数，内部使用 yield 关键字，标识每一步的操作（不管是异步或同步）。我把函数前的*号和yield理解为：async 和 await
+> Effect 是一个 Generator 函数，内部使用 yield 关键字，标识每一步的操作（不管是异步或同步）。我把函数前的\*号和 yield 理解为：async 和 await
 
 call 和 put
 
 dva 提供多个 effect 函数内部的处理函数，比较常用的是 call 和 put。
+
 > call：执行异步函数.
 > put：发出一个 Action，类似于 dispatch
 
 6. Subscription
 
-    未完。待更新
+   未完。待更新
