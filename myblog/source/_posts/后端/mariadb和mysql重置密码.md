@@ -1,3 +1,6 @@
+---
+cover: /img/mysql.jpeg
+---
 如何在Ubuntu 18.04上重置MySQL或MariaDB Root密码
 
 介绍

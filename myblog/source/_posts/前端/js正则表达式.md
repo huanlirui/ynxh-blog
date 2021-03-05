@@ -1,0 +1,3 @@
+---
+cover: /img/node.jpeg
+---
