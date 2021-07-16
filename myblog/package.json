@@ -9,12 +9,12 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "4.2.0"
+    "version": "4.2.1"
   },
   "dependencies": {
     "hexo": "^4.0.0",
     "hexo-asset-image": "git+https://github.com/CodeFalling/hexo-asset-image.git",
-    "hexo-deployer-git": "^2.1.0",
+    "hexo-deployer-git": "^3.0.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-index": "^1.0.0",
