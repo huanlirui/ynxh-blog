@@ -15,3 +15,13 @@ google了一轮，全是import 相关 是否加花括号或者大小写问题 �
 正常了！！！
 
 
+
+我TM又遇到这个问题了。Umi项目打包后。#130  #321报错
+
+找到问题所在：
+在函数组件外。某个request.js文件想做跳转，引用了umi的history 
+import { history } from 'umi';
+本地环境正常
+线上部署后报错。
+删除即可。
+直接使用原生跳转即可。window.location.href
