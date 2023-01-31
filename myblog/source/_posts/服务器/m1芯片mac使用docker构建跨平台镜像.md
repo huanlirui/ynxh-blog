@@ -12,13 +12,13 @@ docker: Error response from daemon: image with reference registry.cn-chengdu.ali
 
 好吧，看来就是构建的镜像 架构不同，不支持
 
-## 1. Docker 默认的 builder 不支持同时指定多个架构，所以要新建一个：
+## 1. Docker 默认的 builder 不支持同时指定多个架构，所以要新建一个
 
 ```bash
 docker buildx create --use --name m1_builder
 ```
 
-## 查看并启动 builder 实例：
+## 查看并启动 builder 实例
 
 ```
 docker buildx inspect --bootstrap
@@ -60,3 +60,10 @@ docker buildx build --platform=linux/amd64 -f dockerfile.test --load -t ${ImageN
 ```
 
 > --load 这个参数必须加上。否则创建的镜像不会被直接保存下来
+
+最后 docker run 的时候也加上参数 --platform linux/amd64
+我的命令如下：
+
+```
+docker run --platform linux/amd64 -d -p ${ContainerPort}:${ContainerPort} --name ${ContainerName} ${ImageName}:${ImageTag}
+```
