@@ -1,3 +1,8 @@
+---
+cover: /img/linux.jpeg
+---
+
+# jenkins部署java应用
 
 ### 大致流程
 
