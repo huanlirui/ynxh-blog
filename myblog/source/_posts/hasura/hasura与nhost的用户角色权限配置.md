@@ -1,4 +1,4 @@
-# hasura + nhost 的用户权限体系配置
+# hasura + nhost 的用户权限配置
 
 ## 默认角色
 
@@ -73,7 +73,7 @@ mutation MyMutation {
 
 ### 注意，由于集成了 nhost 的体系。nhost 的登录，将会返回如下参数
 
-#### 可以看到roles中只有icbc，数据库中只有这一条数据
+#### 可以看到 roles 中只有 icbc，数据库中只有这一条数据
 
 ```
 {
@@ -105,7 +105,7 @@ mutation MyMutation {
 }
 ```
 
-#### 但是！hasura认定的是jwt中的参数，解析上面的token得到如下
+#### 但是！hasura 认定的是 jwt 中的参数，解析上面的 token 得到如下
 
 ```
 {
@@ -123,6 +123,12 @@ mutation MyMutation {
 
 ```
 
-#### 可以看到 user是默认就有的用户。即使库中删除也没用
+```html
+<del>这是要被删除的文本</del>
+```
 
-#### 因此，在hasura中每张表的permisstion中，user角色的权限是所有用户都有的。如果要使用精准的列权限控制和角色绑定。请不要给user角色配置，而是配置到其他的自定义角色中
+#### 可以看到 user 是默认就有的用户。即使库中删除也没用
+
+#### 因此在 hasura 中每张表的 permisstions 中，user 角色的权限是所有用户都有的
+
+> 如果要实现精准的列权限控制和角色绑定。请不要在 user 角色下进行配置，而是配置到其他的自定义角色中
