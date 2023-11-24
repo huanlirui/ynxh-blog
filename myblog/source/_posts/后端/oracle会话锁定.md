@@ -25,3 +25,15 @@ alter system kill session '1352,13371';
 ```
 
 杀死会话ID（SID）为1352，序列号（SERIAL#）为13371的会话。执行这个语句将会终止该会话，并释放相关的资源。
+
+查看活跃的会话
+
+```sql
+select * from v$session where STATUS='ACTIVE' AND username='DRG';
+```
+
+查看某个会话的sql在执行什么  sql_id是上面语句的字段
+
+```sql
+select * from v$sqltext where sql_id='a5gvv6s7z7v3f';
+```
